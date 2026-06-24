@@ -12,10 +12,11 @@ namespace task01
     {
         public static bool IsPalindrome(this string input)
         {
-            input=input.ToLower();
-            string new_input="";
             if(input.Length==0)
                     return false;
+            input=input.ToLower();
+            string new_input="";
+            
             
             foreach (char c in input)
             {
