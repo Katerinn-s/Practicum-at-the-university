@@ -38,6 +38,5 @@ namespace task03
         {
             return _items.Where(predicate).OrderBy(keySelector);
         }
-        //IEnumerator IEnumerable.GenerateSequence() => GetEnumerator();
     }
 }

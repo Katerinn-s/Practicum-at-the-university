@@ -48,7 +48,7 @@ namespace task03tests
             collection.Add(1);
             collection.Add(2);
 
-            var result = collection.FilterAndSort(x => x > 1, x => x).ToList();
+            var result = collection.FilterAndSort(x=>x>1, x => x).ToList();
             Assert.Equal(new[] { 2, 3 }, result);
         }
     }

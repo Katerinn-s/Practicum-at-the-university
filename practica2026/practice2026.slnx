@@ -5,4 +5,8 @@
   <Project Path="task02tests/task02tests.csproj" Id="ba951290-458d-4fb6-af5c-e981959c2b69" />
   <Project Path="task03/task03.csproj" Id="a13eadc6-a696-46f7-89bb-2a89e40d1c36" />
   <Project Path="task03tests/task03tests.csproj" Id="285c3a5a-7e25-4757-a2f0-367e3f351fe7" />
+  <Project Path="task04/task04.csproj" Id="7b93f0bc-269d-426d-b5b4-4625fccff379" />
+  <Project Path="task04tests/task04tests.csproj" Id="2cd11086-4df5-4855-8fda-cc418c96986c" />
+  <Project Path="task05/task05.csproj" Id="ad3d4934-a38c-4a61-bf21-e55b1e318a7c" />
+  <Project Path="task05tests/task05tests.csproj" Id="73b2c4e0-8632-4360-acf5-818d6973e460" />
 </Solution>
