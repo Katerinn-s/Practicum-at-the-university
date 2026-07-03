@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLib;
 using System.IO;
+using task06;
 
 namespace FileSystemCommands
 {
+    [DisplayName("Размер папки")]
+    [Version(1, 0)]
     public class DirectorySizeCommand: ICommand
     {
         private readonly string _path;
@@ -16,6 +19,7 @@ namespace FileSystemCommands
         {
             _path = path;
         }
+
         public void Execute()
         {
             if (!Directory.Exists(_path))
@@ -40,6 +44,8 @@ namespace FileSystemCommands
             return size;
         }
     }
+    [DisplayName("Ищем файлы по маске")]
+    [Version(1, 0)]
     public class FindFilesCommand : ICommand
     {
         private readonly string _path;

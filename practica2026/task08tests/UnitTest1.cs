@@ -38,7 +38,7 @@ namespace task08tests
             var output = new StringWriter();
             Console.SetOut(output);
 
-            command.Execute()
+            command.Execute();
 
             string outputString = output.ToString();
             Assert.Contains("1",outputString);
