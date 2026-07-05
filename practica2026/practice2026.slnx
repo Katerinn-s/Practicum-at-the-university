@@ -16,4 +16,5 @@
   <Project Path="FileSystemCommands/FileSystemCommands.csproj" Id="5c6bd2f1-5b6b-4f43-aadc-9cee4d2d444b" />
   <Project Path="task08tests/task08tests.csproj" Id="a9dee391-121c-475c-a979-ae93390cb734" />
   <Project Path="task09/task09.csproj" Id="15862027-e237-437b-9d2a-7b89599808e6" />
+  <Project Path="task10/task10.csproj" Id="3e393570-d7aa-4bb8-93ba-bc135dae0464" />
 </Solution>

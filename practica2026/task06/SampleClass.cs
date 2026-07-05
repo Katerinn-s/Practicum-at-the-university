@@ -31,6 +31,14 @@ namespace task06
             }
         }
 
+    [AttributeUsage(AttributeTargets.Class)]
+    public class PluginLoadAttribute : Attribute
+    {
+        public PluginLoadAttribute()
+        {   }
+    }
+
+
     [DisplayName("Пример класса")]
     [Version(1,0)]
     public class SampleClass

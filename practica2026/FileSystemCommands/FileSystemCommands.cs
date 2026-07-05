@@ -9,6 +9,15 @@ using task06;
 
 namespace FileSystemCommands
 {
+    [PluginLoad()]
+    public class Att
+    {
+        public void Execute()
+        {
+            Console.WriteLine("Test");
+        }
+    }
+
     [DisplayName("Размер папки")]
     [Version(1, 0)]
     public class DirectorySizeCommand: ICommand
@@ -44,6 +53,7 @@ namespace FileSystemCommands
             return size;
         }
     }
+
     [DisplayName("Ищем файлы по маске")]
     [Version(1, 0)]
     public class FindFilesCommand : ICommand
