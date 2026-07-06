@@ -39,8 +39,7 @@ namespace task05
 
         public bool HasAttribute<T>() where T : Attribute
         {
-            var a = _type.GetCustomAttributes(typeof(T), true);
-            return a.Length > 0;
+            return Attribute.IsDefined(_type, typeof(T));
         }
     }
 }
