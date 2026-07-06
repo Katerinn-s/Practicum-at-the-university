@@ -14,7 +14,7 @@ namespace task05tests
         public void Method2(string param) { }
     }
 
-    [Serializable]
+    [SerializableAttribute]
     public class AttributedClass { }
 
     public class ClassAnalyzerTests
@@ -59,9 +59,9 @@ namespace task05tests
         public void HasAtributesTests()
         {
             var analyzer = new ClassAnalyzer(typeof(AttributedClass));
-            var propers = analyzer.HasAttribute<SerializableAttribute>();
+            var attr = analyzer.HasAttribute<SerializableAttribute>();
 
-            Assert.True( propers);
+            Assert.True( attr);
         }
     }
 }
