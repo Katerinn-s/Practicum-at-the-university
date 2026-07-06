@@ -54,10 +54,6 @@
       <Project>{a2a23517-01c6-4328-8c0a-b866c75b35fa}</Project>
       <Name>CommandLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileSystemCommands\FileSystemCommands.csproj">
-      <Project>{5c6bd2f1-5b6b-4f43-aadc-9cee4d2d444b}</Project>
-      <Name>FileSystemCommands</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
