@@ -36,7 +36,7 @@ namespace task02
             var fc = st.GroupBy(s => s.fcl).Select(g => new { Facl = g.Key, Av = g.Average(s => s.av) });
             var mx = fc.Max(s => s.Av);
             var res = fc.Where(f => f.Av == mx);
-            return res.First().Facl;
+            return res.FirstOrDefault().Facl;
         }
     }
 }
