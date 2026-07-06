@@ -31,14 +31,6 @@ namespace task06
             }
         }
 
-    [AttributeUsage(AttributeTargets.Class)]
-    public class PluginLoadAttribute : Attribute
-    {
-        public PluginLoadAttribute()
-        {   }
-    }
-
-
     [DisplayName("Пример класса")]
     [Version(1,0)]
     public class SampleClass
@@ -49,5 +41,41 @@ namespace task06
         [DisplayName("Числовое свойство")]
         public int Number {  get; }
 
+    }
+
+    public static class ReflectionHelper {
+        public static void PrintTypeInfo(Type t) {
+            var attribute = t.GetCustomAttribute<task06.DisplayNameAttribute>();
+            if(attribute!=null)
+            {
+                Console.WriteLine($"Name class: {t.Name}");
+            }
+
+            var attribute2 = t.GetCustomAttribute<VersionAttribute>();
+            if(attribute!=null)
+            {
+                Console.WriteLine($"Version class: {attribute2.Major}.{attribute2.Minor}");
+            }
+            var methods=t.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+            foreach (var method in methods)
+            {
+                Console.WriteLine($"Method name:{method.Name}");
+                var attr = method.GetCustomAttribute<DisplayNameAttribute>();
+                if (attr!= null)
+                {
+                    Console.WriteLine($"Display name: {attr.DisplayName}");
+                }    
+            }
+            var props = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            foreach (var prop in props)
+            {
+                Console.WriteLine($"Propertie:{prop.Name}");
+                var attr = prop.GetCustomAttribute<DisplayNameAttribute>();
+                if (attr != null)
+                {
+                    Console.WriteLine($"Display name: {attr.DisplayName}");
+                }
+            }
+        }        
     }
 }
