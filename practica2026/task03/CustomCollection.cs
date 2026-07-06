@@ -36,6 +36,8 @@ namespace task03
 
         public IEnumerable<T> FilterAndSort(Func<T, bool> predicate, Func<T, IComparable> keySelector)
         {
+            if((predicate == null)|| (keySelector == null))
+                return Enumerable.Empty<T>();
             return _items.Where(predicate).OrderBy(keySelector);
         }
     }
