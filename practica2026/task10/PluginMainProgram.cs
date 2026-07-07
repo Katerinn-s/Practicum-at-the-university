@@ -10,7 +10,7 @@ using task06;
 
 namespace task10
 {
-    internal class Program
+    internal class PluginMainProgram
     {
         static void Main(string[] args)
         {
