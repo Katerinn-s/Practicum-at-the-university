@@ -12,11 +12,33 @@ namespace CommandRunner
     {
         static void Main(string[] args)
         {
-            ICommand dsc = new FileSystemCommands.DirectorySizeCommand("C:\\Windows\\Boot");
-            dsc.Execute();
+            Assembly SampleAssembly;
+            SampleAssembly = Assembly.LoadFrom("FileSystemCommands.dll");
+            Type[] types = SampleAssembly.GetTypes();
+            Type t = types.FirstOrDefault(tt=>tt.Name== "DirectorySizeCommand");
+            
+            string fullNameType = t.Namespace + "." + t.Name;
+            Object o = SampleAssembly.CreateInstance(fullNameType, false,                                                                   
+               BindingFlags.Public | BindingFlags.Instance,                                                           
+               null,
+               new object[] { "C:\\Windows\\Boot" },
+               null,
+               null);
 
-            dsc = new FileSystemCommands.FindFilesCommand("C:\\Windows\\Boot", "*.sdi");
-            dsc.Execute();
+            MethodInfo m = SampleAssembly.GetType(fullNameType).GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance);
+            Object ret = m.Invoke(o, new Object[] { });
+
+            t = types.FirstOrDefault(tt => tt.Name == "FindFilesCommand");
+            fullNameType = t.Namespace + "." + t.Name;
+            o = SampleAssembly.CreateInstance(fullNameType, false,                                                                  
+               BindingFlags.Public | BindingFlags.Instance,
+               null,
+               new object[] { "C:\\Windows\\Boot" , "*.sdi" },
+               null,
+               null);
+
+            m = SampleAssembly.GetType(fullNameType).GetMethod("Execute", BindingFlags.Public | BindingFlags.Instance);
+            ret = m.Invoke(o, new Object[] { });
         }
     }
 }
