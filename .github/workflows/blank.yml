@@ -12,17 +12,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-    
+
+    - name: List all files (debug)
+      run: ls -la
+
     - name: Restore dependencies
-      run: dotnet restore practice2026.slnx
-    
+      run: dotnet restore practice2025.slnx
+
     - name: Build
-      run: dotnet build practice2026.slnx --no-restore --configuration Release
-    
+      run: dotnet build practice2025.slnx --no-restore --configuration Release
+
     - name: Run tests
-      run: dotnet test practice2026.slnx --no-build --configuration Release --verbosity normal
+      run: dotnet test practice2025.slnx --no-build --configuration Release --verbosity normal
