@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '8.0.x'
     
     - name: Restore dependencies
-      run: dotnet restore practice2026.sln
+      run: dotnet restore practice2026.slnx
     
     - name: Build
       run: dotnet build practice2025.sln --no-restore --configuration Release
