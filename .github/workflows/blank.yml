@@ -18,6 +18,9 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: Find solution file
+      run: find . -name "*.slnx"
+
     - name: Set solution path
       run: echo "SOLUTION_PATH=${GITHUB_REF##*/}/practice2026.slnx" >> $GITHUB_ENV
 
