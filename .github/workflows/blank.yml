@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Set solution path
-      run: echo "SOLUTION_PATH=${GITHUB_REF##*/}/practica2026/practice2026.slnx" >> $GITHUB_ENV
+      run: echo "SOLUTION_PATH=practicA2026/${GITHUB_REF##*/}/practice2026.slnx" >> $GITHUB_ENV
 
     - name: List all files (debug)
       run: ls -la
