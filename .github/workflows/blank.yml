@@ -18,14 +18,17 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: Set solution path
+      run: echo "SOLUTION_PATH=${GITHUB_REF##*/}/practice2026.slnx" >> $GITHUB_ENV
+
     - name: List all files (debug)
       run: ls -la
 
     - name: Restore dependencies
-      run: dotnet restore practice2026.slnx
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
 
     - name: Build
-      run: dotnet build practice2026.slnx --no-restore --configuration Release
+      run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test practice2026.slnx --no-build --configuration Release --verbosity normal
+      run: dotnet test ${{ env.SOLUTION_PATH }} --no-build --configuration Release --verbosity normal
