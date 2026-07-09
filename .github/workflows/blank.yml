@@ -18,11 +18,16 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: 🔍 Find solution file
+      run: |
+        echo "===== Корень репозитория ====="
+        ls -la
+        echo ""
+        echo "===== Все папки и файлы с .slnx ====="
+        find . -name "*.slnx"
+
     - name: Set solution path
       run: echo "SOLUTION_PATH=practicA2026/task10/practice2026.slnx" >> $GITHUB_ENV
-
-    - name: List all files (debug)
-      run: ls -la
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.SOLUTION_PATH }}
