@@ -18,14 +18,8 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Find solution file
-      run: |
-        SOLUTION_FILE=$(find . -name "*.slnx" | head -n 1)
-        if [ -z "$SOLUTION_FILE" ]; then
-          echo "❌ Файл .slnx не найден!"
-          exit 1
-        fi
-        echo "SOLUTION_PATH=$SOLUTION_FILE" >> $GITHUB_ENV
+    - name: Set solution path
+      run: echo "SOLUTION_PATH=${GITHUB_REF##*/}/practice2026.slnx" >> $GITHUB_ENV
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.SOLUTION_PATH }}
