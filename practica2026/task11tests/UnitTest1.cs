@@ -7,19 +7,11 @@ namespace task11tests
 {
     public class CalculatorTests
     {
-       [Fact]
-        public void Calculator_Add()
+        [Fact]
+        public void Calculator_Add_ReturnsCorrectSum()
         {
             var generator = new CalculatorGenerator();
-            string _calculatorCode =   "using System; " +
-        "public class Calculator : task11.ICalculator " +
-        "{ " +
-        "    public int Add(int a, int b) => a + b; " +
-        "    public int Minus(int a, int b) => a - b; " +
-        "    public int Mul(int a, int b) => a * b; " +
-        "    public int Div(int a, int b) => a / b; " +
-        "}";
-            dynamic calculator = generator.GenerateClass(_calculatorCode);
+            dynamic calculator = generator.CreateCalculatorInstance();
 
             int result = calculator.Add(5, 3);
             Assert.Equal(8, result);

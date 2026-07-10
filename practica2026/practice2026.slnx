@@ -17,7 +17,6 @@
   <Project Path="SystemCommands/SystemCommands.csproj" Id="2ddaf84b-de68-4e3c-b89c-e7f5df5a7235" />
   <Project Path="task08tests/task08tests.csproj" Id="a9dee391-121c-475c-a979-ae93390cb734" />
   <Project Path="task11/task11.csproj" Id="dec6f3aa-3ec7-4e94-ba4d-46d5b36a9d23" />
-  <Project Path="task11appconsole/task11appconsole.csproj" Id="2fc44119-e9d5-4a4c-afac-8663a239b2f0" />
   <Project Path="task11main/task11main.csproj" Id="d94e2754-3969-411f-8afb-427666d207a6" />
   <Project Path="task11tests/task11tests.csproj" Id="1fbae2dc-dc29-4477-8c1d-c08aceef4529" />
 </Solution>

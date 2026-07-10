@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Emit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,44 +13,20 @@ namespace task11main
 {
     public class CalculatorGenerator
     {
-        public ICalculator GenerateClass(string code) {
-            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
-            string assemblyName = "MyClass";
-            MetadataReference[] references =new[] { 
-                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(ICalculator).Assembly.Location),
-                MetadataReference.CreateFromFile(Path.Combine(Path.GetDirectoryName(typeof(object).Assembly.Location), "System.Runtime.dll")),
-                MetadataReference.CreateFromFile(Path.Combine(Path.GetDirectoryName(typeof(object).Assembly.Location), "netstandard.dll"))};
-
-            CSharpCompilation compilation = CSharpCompilation.Create(assemblyName, new[] { syntaxTree }, references);
-            var ms = new MemoryStream();
-            EmitResult result = compilation.Emit(ms);
-            if (!result.Success)
-            {
-                // Обработка ошибок компиляции
-                var errors = new List<string>();
-                foreach (var diagnostic in result.Diagnostics)
-                {
-                    errors.Add(diagnostic.ToString());
-                }
-                throw new Exception($"Ошибка компиляции:\n{string.Join("\n", errors)}");
-            }
-            ms.Seek(0, SeekOrigin.Begin);
-            return (ICalculator)Assembly.Load(ms.ToArray());
-        }
-    }
-}
-
-
-
-/*
-
+        private readonly string _calculatorCode =
+        "using System; " +
+        "public class Calculator : task11.ICalculator " +
+        "{ " +
+        "    public int Add(int a, int b) => a + b; " +
+        "    public int Minus(int a, int b) => a - b; " +
+        "    public int Mul(int a, int b) => a * b; " +
+        "    public int Div(int a, int b) => a / b; " +
+        "}";
         public object CreateCalculatorInstance()
         {
             var assembly = CompileCode(_calculatorCode);
             return assembly.CreateInstance("Calculator");
         }
-
         private Assembly CompileCode(string code)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(code);
@@ -86,4 +61,6 @@ namespace task11main
                 ms.Seek(0, SeekOrigin.Begin);
                 return Assembly.Load(ms.ToArray());
             }
-        }*/
+        }
+    }
+}
