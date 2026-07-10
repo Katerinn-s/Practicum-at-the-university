@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using task11;
 
-namespace task11main
+namespace task11gen
 {
     public class CalculatorGenerator
     {
-       public ICalculator CreateCalculatorInstance(string code)
+        public ICalculator CreateCalculatorInstance(string code)
         {
 
             var syntaxTree = CSharpSyntaxTree.ParseText(code);
@@ -55,6 +55,5 @@ namespace task11main
                null);
             return (ICalculator)o;
         }
-
     }
 }
