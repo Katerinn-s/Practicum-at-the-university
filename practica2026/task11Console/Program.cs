@@ -51,7 +51,8 @@ namespace task11Console
             }
             ms.Seek(0, SeekOrigin.Begin);
             Assembly ass= Assembly.Load(ms.ToArray());
-            ass.GetType("Calculator");
+            Type t = ass.GetType("Calculator");
+
             Console.WriteLine("test");
         }
     }
