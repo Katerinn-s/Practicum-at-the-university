@@ -43,6 +43,14 @@ namespace task06
 
     }
 
+    [AttributeUsage(AttributeTargets.Class)]
+    public class PluginLoadAttribute : Attribute
+    {
+        public PluginLoadAttribute()
+        {
+        }
+    }
+
     public static class ReflectionHelper {
         public static void PrintTypeInfo(Type t) {
             var attribute = t.GetCustomAttribute<task06.DisplayNameAttribute>();

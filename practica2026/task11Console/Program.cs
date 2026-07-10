@@ -30,6 +30,8 @@ namespace task11Console
             ICalculator calculator = generator.CreateCalculatorInstance(_calculatorCode);
             int result2 = calculator.Add(5, 3);
             Console.WriteLine(result2);
+            //if (result2 != 9)
+           //     throw new Exception ("test1 fail");
         }
     }
 }
