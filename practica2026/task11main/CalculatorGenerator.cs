@@ -1,21 +1,16 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using task11;
 
-namespace task11
+namespace task11main
 {
-    public interface ICalculator
-    {
-        int Add(int a, int b);
-        int Minus(int a, int b);
-        int Mul(int a, int b);
-        int Div(int a, int b);
-    }
-
     public class CalculatorGenerator
     {
         private readonly string _calculatorCode =
@@ -27,25 +22,22 @@ namespace task11
         "    public int Mul(int a, int b) => a * b; " +
         "    public int Div(int a, int b) => a / b; " +
         "}";
-
         public object CreateCalculatorInstance()
         {
             var assembly = CompileCode(_calculatorCode);
             return assembly.CreateInstance("Calculator");
         }
-
         private Assembly CompileCode(string code)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(code);
 
             var references = new[]
             {
-        MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-        MetadataReference.CreateFromFile(typeof(ICalculator).Assembly.Location),
-        MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
-        MetadataReference.CreateFromFile(Assembly.Load("System.Runtime").Location),
-        MetadataReference.CreateFromFile(Assembly.Load("System.Collections.Immutable").Location),
-    };
+                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(ICalculator).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(System.Collections.Immutable.ImmutableArray).Assembly.Location),
+            };
 
             var compilation = CSharpCompilation.Create(
                 "DynamicCalculator",
@@ -70,20 +62,5 @@ namespace task11
                 return Assembly.Load(ms.ToArray());
             }
         }
-    }
-
-    public class CalculatorWrapper : ICalculator
-    {
-        private readonly dynamic _calculator;
-
-        public CalculatorWrapper(dynamic calculator)
-        {
-            _calculator = calculator;
-        }
-
-        public int Add(int a, int b) => _calculator.Add(a, b);
-        public int Minus(int a, int b) => _calculator.Minus(a, b);
-        public int Mul(int a, int b) => _calculator.Mul(a, b);
-        public int Div(int a, int b) => _calculator.Div(a, b);
     }
 }

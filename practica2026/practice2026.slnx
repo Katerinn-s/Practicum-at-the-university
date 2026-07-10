@@ -14,7 +14,9 @@
   <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task06/task06.csproj" Id="b41ef930-9e9c-45bc-8f33-e924aeaa396e" />
   <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task06tests/task06tests.csproj" Id="c06b400f-243b-46bc-b93b-de7aed2bcad7" />
   <Project Path="FileSystemCommands/FileSystemCommands.csproj" Id="5c6bd2f1-5b6b-4f43-aadc-9cee4d2d444b" />
+  <Project Path="SystemCommands/SystemCommands.csproj" Id="2ddaf84b-de68-4e3c-b89c-e7f5df5a7235" />
   <Project Path="task08tests/task08tests.csproj" Id="a9dee391-121c-475c-a979-ae93390cb734" />
-  <Project Path="task11/task11.csproj" Id="63ed0ee4-5ca9-4b56-9f69-ab9a83cc0e1c" />
-  <Project Path="task11tests/task11tests.csproj" Id="7b41e711-74ff-46ac-8f0b-c9482ea8035a" />
+  <Project Path="task11/task11.csproj" Id="dec6f3aa-3ec7-4e94-ba4d-46d5b36a9d23" />
+  <Project Path="task11main/task11main.csproj" Id="d94e2754-3969-411f-8afb-427666d207a6" />
+  <Project Path="task11tests/task11tests.csproj" Id="1fbae2dc-dc29-4477-8c1d-c08aceef4529" />
 </Solution>

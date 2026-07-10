@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DEC6F3AA-3EC7-4E94-BA4D-46D5B36A9D23}</ProjectGuid>
+    <ProjectGuid>{2DDAF84B-DE68-4E3C-B89C-E7F5DF5A7235}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>task11</RootNamespace>
-    <AssemblyName>task11</AssemblyName>
+    <RootNamespace>SystemCommands</RootNamespace>
+    <AssemblyName>SystemCommands</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICalculator.cs" />
+    <Compile Include="SystemCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\task11\task11.csproj">
+      <Project>{dec6f3aa-3ec7-4e94-ba4d-46d5b36a9d23}</Project>
+      <Name>task11</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

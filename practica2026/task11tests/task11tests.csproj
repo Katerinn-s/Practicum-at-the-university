@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="10.0.9" />
     <PackageReference Include="xunit.v3.mtp-v2" Version="3.2.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\task11\task11.csproj" />
+    <ProjectReference Include="..\SystemCommands\SystemCommands.csproj" />
+    <ProjectReference Include="..\task11main\task11main.csproj" />
   </ItemGroup>
 
 </Project>
