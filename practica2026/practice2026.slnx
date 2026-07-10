@@ -15,4 +15,6 @@
   <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task06tests/task06tests.csproj" Id="c06b400f-243b-46bc-b93b-de7aed2bcad7" />
   <Project Path="FileSystemCommands/FileSystemCommands.csproj" Id="5c6bd2f1-5b6b-4f43-aadc-9cee4d2d444b" />
   <Project Path="task08tests/task08tests.csproj" Id="a9dee391-121c-475c-a979-ae93390cb734" />
+  <Project Path="task11/task11.csproj" Id="63ed0ee4-5ca9-4b56-9f69-ab9a83cc0e1c" />
+  <Project Path="task11tests/task11tests.csproj" Id="7b41e711-74ff-46ac-8f0b-c9482ea8035a" />
 </Solution>
