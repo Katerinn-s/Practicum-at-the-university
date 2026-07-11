@@ -21,4 +21,6 @@
   <Project Path="task11Console/task11Console.csproj" Id="ba40e573-3299-4a90-84c2-03dae68db542" />
   <Project Path="task11gen/task11gen.csproj" Id="0ca338d6-eceb-47d0-9c1a-0ea56e8f2b87" />
   <Project Path="task11tests/task11tests.csproj" Id="1fbae2dc-dc29-4477-8c1d-c08aceef4529" />
+  <Project Path="task13/task13.csproj" Id="174719df-902a-42ef-b7c9-a3dd9371acbf" />
+  <Project Path="task13tests/task13tests.csproj" Id="6e892020-6298-4a4e-b295-8acdd9fc39c7" />
 </Solution>
