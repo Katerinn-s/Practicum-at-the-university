@@ -18,14 +18,22 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: List all files (debug)
-      run: ls -la
+    - name: Find solution file
+      run: |
+        echo "🔍 Ищем файл .slnx в репозитории..."
+        SOLUTION_FILE=$(find . -name "*.slnx" | head -n 1)
+        if [ -z "$SOLUTION_FILE" ]; then
+          echo "❌ Файл .slnx не найден!"
+          exit 1
+        fi
+        echo "✅ Найден файл: $SOLUTION_FILE"
+        echo "SOLUTION_PATH=$SOLUTION_FILE" >> $GITHUB_ENV
 
     - name: Restore dependencies
-      run: dotnet restore practice2026.slnx
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
 
     - name: Build
-      run: dotnet build practice2026.slnx --no-restore --configuration Release
+      run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test practice2026.slnx --no-build --configuration Release --verbosity norma
+      run: dotnet test ${{ env.SOLUTION_PATH }} --no-build --configuration Release --verbosity normal
