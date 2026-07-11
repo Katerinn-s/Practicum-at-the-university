@@ -23,4 +23,6 @@
   <Project Path="task11tests/task11tests.csproj" Id="1fbae2dc-dc29-4477-8c1d-c08aceef4529" />
   <Project Path="task13/task13.csproj" Id="174719df-902a-42ef-b7c9-a3dd9371acbf" />
   <Project Path="task13tests/task13tests.csproj" Id="6e892020-6298-4a4e-b295-8acdd9fc39c7" />
+  <Project Path="task14/task14.csproj" Id="0c9a036d-f601-494b-8d8c-318a5c5f16ba" />
+  <Project Path="task14tests/task14tests.csproj" Id="ef8ec1c3-9c9d-40d9-a489-d96dc837b6ca" />
 </Solution>
