@@ -18,17 +18,24 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
+    - name: Set solution path
       run: |
-        cd practica2026
-        dotnet restore practice2026.slnx
+        BRANCH_NAME=${GITHUB_REF##*/}
+        if [ "$BRANCH_NAME" = "task13" ]; then
+          echo "SOLUTION_PATH=practica2026/practice2026.slnx" >> $GITHUB_ENV
+        elif [ "$BRANCH_NAME" = "task12" ]; then
+          echo "SOLUTION_PATH=practica2026/practice2026.slnx" >> $GITHUB_ENV
+        elif [ "$BRANCH_NAME" = "task11" ]; then
+          echo "SOLUTION_PATH=practica2026/practice2026.slnx" >> $GITHUB_ENV
+        else
+          echo "SOLUTION_PATH=practice2026.slnx" >> $GITHUB_ENV
+        fi
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
 
     - name: Build
-      run: |
-        cd practica2026
-        dotnet build practice2026.slnx --no-restore --configuration Release
+      run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
 
     - name: Run tests
-      run: |
-        cd practica2026
-        dotnet test practice2026.slnx --no-build --configuration Release --verbosity normal
+      run: dotnet test ${{ env.SOLUTION_PATH }} --no-build --configuration Release --verbosity normal
