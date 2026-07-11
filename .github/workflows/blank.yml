@@ -18,22 +18,64 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: Debug - Show current directory and files
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "Branch name: ${GITHUB_REF##*/}"
+        echo "All files in repository:"
+        ls -la
+        echo "Looking for solution files (*.sln, *.slnx):"
+        find . -name "*.sln" -o -name "*.slnx"
+        echo "Looking for project files (*.csproj):"
+        find . -name "*.csproj"
+
     - name: Find solution file
       id: find-sln
       run: |
-        SLN_FILE=$(find . -maxdepth 2 -name "*.slnx" -o -name "*.sln" | head -n 1)
+        # Ищем файл решения в разных местах
+        SLN_FILE=""
+        
+        # Сначала ищем в корне
+        if [ -f "practice2026.slnx" ]; then
+          SLN_FILE="practice2026.slnx"
+        elif [ -f "practice2026.sln" ]; then
+          SLN_FILE="practice2026.sln"
+        else
+          # Ищем в папке с именем ветки
+          BRANCH_NAME="${GITHUB_REF##*/}"
+          if [ -f "$BRANCH_NAME/practice2026.slnx" ]; then
+            SLN_FILE="$BRANCH_NAME/practice2026.slnx"
+          elif [ -f "$BRANCH_NAME/practice2026.sln" ]; then
+            SLN_FILE="$BRANCH_NAME/practice2026.sln"
+          else
+            # Ищем любой .slnx или .sln файл
+            SLN_FILE=$(find . -maxdepth 3 -name "*.slnx" -o -name "*.sln" | head -n 1)
+          fi
+        fi
+        
         if [ -z "$SLN_FILE" ]; then
-          echo "No solution file found!"
+          echo "❌ No solution file found in this branch!"
+          echo "Files in current directory:"
+          ls -la
+          echo "Searching recursively:"
+          find . -type f -name "*.sln*" -o -name "*.csproj"
           exit 1
         fi
+        
+        echo "✅ Found solution file: $SLN_FILE"
         echo "solution_path=$SLN_FILE" >> $GITHUB_OUTPUT
-        echo "Found solution: $SLN_FILE"
 
     - name: Restore dependencies
-      run: dotnet restore ${{ steps.find-sln.outputs.solution_path }}
+      run: |
+        echo "Restoring: ${{ steps.find-sln.outputs.solution_path }}"
+        dotnet restore "${{ steps.find-sln.outputs.solution_path }}"
 
     - name: Build
-      run: dotnet build ${{ steps.find-sln.outputs.solution_path }} --no-restore --configuration Release
+      run: |
+        echo "Building: ${{ steps.find-sln.outputs.solution_path }}"
+        dotnet build "${{ steps.find-sln.outputs.solution_path }}" --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test ${{ steps.find-sln.outputs.solution_path }} --no-build --configuration Release --verbosity normal
+      run: |
+        echo "Testing: ${{ steps.find-sln.outputs.solution_path }}"
+        dotnet test "${{ steps.find-sln.outputs.solution_path }}" --no-build --configuration Release --verbosity normal
