@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
 
@@ -18,44 +18,14 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Check if project files exist
-      id: check-files
-      run: |
-        echo "Looking for project files..."
-        
-        # Проверяем наличие любых файлов проекта
-        if find . -name "*.csproj" -o -name "*.sln*" | grep -q .; then
-          echo "✅ Project files found!"
-          echo "has_files=true" >> $GITHUB_OUTPUT
-          
-          # Находим файл для сборки
-          SLN=$(find . -name "*.slnx" -o -name "*.sln" | head -n 1)
-          if [ -z "$SLN" ]; then
-            SLN=$(find . -name "*.csproj" | head -n 1)
-          fi
-          echo "solution_path=$SLN" >> $GITHUB_OUTPUT
-          echo "Will build: $SLN"
-        else
-          echo "⚠️ No project files found - this is OK for deletion commits"
-          echo "has_files=false" >> $GITHUB_OUTPUT
-        fi
-        
-        # Показываем структуру для отладки
-        echo "Current directory structure:"
-        ls -la
-        echo "All .csproj files:"
-        find . -name "*.csproj" || echo "  (none)"
-        echo "All .sln files:"
-        find . -name "*.sln*" || echo "  (none)"
+    - name: Set solution path
+      run: echo "SOLUTION_PATH=${GITHUB_REF##*/}/practice2026.slnx" >> $GITHUB_ENV
 
     - name: Restore dependencies
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet restore "${{ steps.check-files.outputs.solution_path }}"
+      run: dotnet restore ${{ env.SOLUTION_PATH }}
 
     - name: Build
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet build "${{ steps.check-files.outputs.solution_path }}" --no-restore --configuration Release
+      run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
 
     - name: Run tests
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet test "${{ steps.check-files.outputs.solution_path }}" --no-build --configuration Release --verbosity normal
+      run: dotnet test ${{ env.SOLUTION_PATH }} --no-build --configuration Release --verbosity normal
