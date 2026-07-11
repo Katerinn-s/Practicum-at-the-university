@@ -21,10 +21,10 @@ jobs:
     - name: Set solution path
       run: |
         BRANCH_NAME=${GITHUB_REF##*/}
-        if [ "$BRANCH_NAME" = "task10" ]; then
-          echo "SOLUTION_PATH=practica2026/task10/practice2026.slnx" >> $GITHUB_ENV
+        if [ "$BRANCH_NAME" = "task04" ]; then
+          echo "SOLUTION_PATH=practica2026/task04tests/practice2026.slnx" >> $GITHUB_ENV
         else
-          echo "SOLUTION_PATH=practica2026/task10/practice2026.slnx" >> $GITHUB_ENV
+          echo "SOLUTION_PATH=practica2026/task04tests/practice2026.slnx" >> $GITHUB_ENV
         fi
 
     - name: Restore dependencies
