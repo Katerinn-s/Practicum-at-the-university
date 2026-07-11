@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
 
@@ -18,32 +18,14 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Check if project files exist
-      id: check-files
-      run: |
-        echo "Looking for project files..."
-        if find . -name "*.csproj" -o -name "*.sln*" | grep -q .; then
-          echo "✅ Project files found!"
-          echo "has_files=true" >> $GITHUB_OUTPUT
-          SLN=$(find . -name "*.slnx" -o -name "*.sln" | head -n 1)
-          if [ -z "$SLN" ]; then
-            SLN=$(find . -name "*.csproj" | head -n 1)
-          fi
-          echo "solution_path=$SLN" >> $GITHUB_OUTPUT
-          echo "Will build: $SLN"
-        else
-          echo "⚠️ No project files found - skipping build"
-          echo "has_files=false" >> $GITHUB_OUTPUT
-        fi
+    - name: List all files (debug)
+      run: ls -la
 
     - name: Restore dependencies
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet restore "${{ steps.check-files.outputs.solution_path }}"
+      run: dotnet restore practice2026.slnx
 
     - name: Build
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet build "${{ steps.check-files.outputs.solution_path }}" --no-restore --configuration Release
+      run: dotnet build practice2026.slnx --no-restore --configuration Release
 
     - name: Run tests
-      if: steps.check-files.outputs.has_files == 'true'
-      run: dotnet test "${{ steps.check-files.outputs.solution_path }}" --no-build --configuration Release --verbosity normal
+      run: dotnet test practice2026.slnx --no-build --configuration Release --verbosity norma
