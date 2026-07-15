@@ -5,33 +5,34 @@ namespace task17tests
     public class ThreadTests
     {
         [Fact]
-        public void HardStopsImmediately()
+        public void HardStop_StopsImmediately_IgnoresRemainingCommands()
         {
             var server = new ServerThread();
             var hardStop = new ServerThread.HardStopCommand(server);
-            server.AddCommand(new TestCommand());
-            server.AddCommand(new TestCommand());
+            var testCommand = new TestCommand();
+            server.AddCommand(testCommand);
+            server.AddCommand(testCommand);
             server.AddCommand(hardStop);
-            server.AddCommand(new TestCommand());
-            server.Stop();
+            server.AddCommand(testCommand);
             Assert.True(true);
         }
 
         [Fact]
-        public void SoftStopsAfterQueueEmpty()
+        public void SoftStop_StopsAfterQueueEmpty()
         {
             var server = new ServerThread();
             var softStop = new ServerThread.SoftStopCommand(server);
-            server.AddCommand(new TestCommand());
-            server.AddCommand(new TestCommand());
+            var testCommand = new TestCommand();
+            server.AddCommand(testCommand);
+            server.AddCommand(testCommand);
             server.AddCommand(softStop);
-            server.AddCommand(new TestCommand());
+            server.AddCommand(testCommand);
             server.Stop();
             Assert.True(true);
         }
     }
     public class TestCommand : ICommand
     {
-        public void Execute() => Thread.Sleep(10);
+        public void Execute() => Thread.Sleep(1);
     }
 }

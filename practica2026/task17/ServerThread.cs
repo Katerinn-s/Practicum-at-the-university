@@ -12,10 +12,14 @@ namespace task17
     {
         private readonly BlockingCollection<ICommand> _queue = new BlockingCollection<ICommand>();
         private readonly Thread _thread;
-        private bool _softStop = false;
+        private readonly IScheduler _scheduler;
+        private volatile bool _softStop = false;
+
         public int ThreadId => _thread.ManagedThreadId;
-        public ServerThread()
+
+        public ServerThread(IScheduler scheduler = null)
         {
+            _scheduler = scheduler ?? new RoundRobinScheduler();
             _thread = new Thread(ProcessCommands);
             _thread.Start();
         }
@@ -25,28 +29,47 @@ namespace task17
             if (command == null) throw new ArgumentNullException(nameof(command));
             _queue.Add(command);
         }
-        public void Stop() => _thread.Join();
+
+        public void Stop()
+        {
+                _softStop = true;
+                _queue.CompleteAdding();
+                _thread.Join();
+        }
+
         private void ProcessCommands()
         {
-            foreach (var command in _queue.GetConsumingEnumerable())
+            while (!_softStop)
             {
-                if (_softStop)
-                    break;
-                command.Execute();
+                if (_scheduler.HasCommand())
+                {
+                    var cmd = _scheduler.Select();
+                    if (cmd != null)
+                    {
+                        cmd.Execute();
+                        continue;
+                    }
+                }
+                if (_queue.TryTake(out var newCmd, 50))
+                {
+                    _scheduler.Add(newCmd);
+                }
+                if (_softStop) break;
             }
         }
+
         public class HardStopCommand : ICommand
         {
             private readonly ServerThread _target;
-            public HardStopCommand(ServerThread target)
-            {
-                _target = target;
-            }
+
+            public HardStopCommand(ServerThread target) => _target = target;
 
             public void Execute()
             {
                 if (Thread.CurrentThread.ManagedThreadId != _target.ThreadId)
                     throw new InvalidOperationException("HardStop может быть выполнен только в целевом потоке");
+
+                _target._softStop = true;
                 _target._queue.CompleteAdding();
             }
         }
@@ -54,14 +77,14 @@ namespace task17
         public class SoftStopCommand : ICommand
         {
             private readonly ServerThread _target;
-            public SoftStopCommand(ServerThread target)
-            {
-                _target = target;
-            }
+
+            public SoftStopCommand(ServerThread target) => _target = target;
+
             public void Execute()
             {
                 if (Thread.CurrentThread.ManagedThreadId != _target.ThreadId)
                     throw new InvalidOperationException("SoftStop может быть выполнен только в целевом потоке");
+
                 _target._softStop = true;
                 _target._queue.CompleteAdding();
             }
