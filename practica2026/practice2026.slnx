@@ -1,0 +1,20 @@
+<Solution>
+  <Project Path="CommandLib/CommandLib.csproj" Id="a2a23517-01c6-4328-8c0a-b866c75b35fa" />
+  <Project Path="CommandRunner/CommandRunner.csproj" Id="fe684a09-00ab-4565-8722-6f49b7d0503d" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task01/task01.csproj" Id="c47294d8-2def-4e69-a17b-a690086262bb" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task01tests/task01tests.csproj" Id="672a0ffb-e2ea-4e29-acf7-10f530233e60" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task02/task02.csproj" Id="b8da4d0d-df43-42b0-bd06-50f2e19ea60d" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task02tests/task02tests.csproj" Id="ba951290-458d-4fb6-af5c-e981959c2b69" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task03/task03.csproj" Id="a13eadc6-a696-46f7-89bb-2a89e40d1c36" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task03tests/task03tests.csproj" Id="285c3a5a-7e25-4757-a2f0-367e3f351fe7" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task04/task04.csproj" Id="7b93f0bc-269d-426d-b5b4-4625fccff379" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task04tests/task04tests.csproj" Id="2cd11086-4df5-4855-8fda-cc418c96986c" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task05/task05.csproj" Id="ad3d4934-a38c-4a61-bf21-e55b1e318a7c" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task05tests/task05tests.csproj" Id="73b2c4e0-8632-4360-acf5-818d6973e460" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task06/task06.csproj" Id="b41ef930-9e9c-45bc-8f33-e924aeaa396e" />
+  <Project Path="D:/My Projects/Practicum as the university/Practicum-at-the-university/practica2026/task06tests/task06tests.csproj" Id="c06b400f-243b-46bc-b93b-de7aed2bcad7" />
+  <Project Path="FileSystemCommands/FileSystemCommands.csproj" Id="5c6bd2f1-5b6b-4f43-aadc-9cee4d2d444b" />
+  <Project Path="task08tests/task08tests.csproj" Id="a9dee391-121c-475c-a979-ae93390cb734" />
+  <Project Path="task09/task09.csproj" Id="15862027-e237-437b-9d2a-7b89599808e6" />
+  <Project Path="task10/task10.csproj" Id="3e393570-d7aa-4bb8-93ba-bc135dae0464" />
+</Solution>
