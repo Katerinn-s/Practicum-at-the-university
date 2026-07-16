@@ -50,10 +50,11 @@ namespace task17
                         continue;
                     }
                 }
-                if (_queue.TryTake(out var newCmd, 50))
+                while (_queue.TryTake(out var newCmd, 0))
                 {
                     _scheduler.Add(newCmd);
                 }
+
                 if (_softStop) break;
             }
         }
