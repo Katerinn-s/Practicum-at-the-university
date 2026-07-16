@@ -19,9 +19,7 @@ namespace task09
             }
             string l = args[0];
             Assembly SampleAssembly;
-            SampleAssembly = Assembly.LoadFrom(l);
-            //var n = SampleAssembly.GetReferencedAssemblies();
-            //foreach (var a in n) { Console.Write(n.ToString()); }
+            SampleAssembly = Assembly.Load(l);
             Type[] types = SampleAssembly.GetTypes();
             foreach(Type t in types)
             {
